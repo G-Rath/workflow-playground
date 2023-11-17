@@ -1,0 +1,25 @@
+name: deploy_to_ec2
+on:
+  workflow_call:
+    inputs:
+      timeout_minutes:
+        type: number
+        required: false
+        default: 15
+
+# These are the permissions required by this nested workflow to function.
+#
+# You should include a copy of this block next to any `uses:` of this workflow
+permissions:
+  contents: read # to fetch code (actions/checkout)
+
+jobs:
+  deploy_to_ec2_via_oidc:
+    name: Deploy to AWS EC2 with Capistrano, authenticated by Github OIDC
+    runs-on: ubuntu-latest
+    timeout-minutes: ${{ inputs.timeout_minutes }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - run: echo "hello world"

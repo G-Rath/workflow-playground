@@ -55,3 +55,6 @@ jobs:
           message: Cleaning up documentation
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           allow-repeats: true
+  run_action:
+    uses: ./.github/workflows/trigger.yml
+    permissions: {}
