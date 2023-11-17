@@ -13,9 +13,10 @@ on:
 # If you are wanting to introduce a job/tool that requires more permissions (such
 # as posting comments or commits to the repository), then you should grant just
 # that job the necessarily permissions by giving it a dedicated `permissions` block.
-permissions:
-  contents: read # to fetch code (actions/checkout)
-  pull-requests: write
+permissions: {}
+#permissions:
+#  contents: read # to fetch code (actions/checkout)
+#  pull-requests: write
 
 jobs:
   print_context:
