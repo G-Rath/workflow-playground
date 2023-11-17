@@ -13,6 +13,8 @@ on:
 #permissions:
 #  contents: read # to fetch code (actions/checkout)
 
+permissions: {}
+
 jobs:
   deploy_to_ec2_via_oidc:
     name: Deploy to AWS EC2 with Capistrano, authenticated by Github OIDC
