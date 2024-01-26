@@ -1,0 +1,14 @@
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: string
+        required: false
+        default: production
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - run: echo 'hello world!'
