@@ -1,0 +1,15 @@
+on:
+  workflow_call:
+    inputs:
+      environment:
+        type: string
+        required: false
+jobs:
+  do_something:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - run: env
+      - run: echo "${{ toJson(env) }}"
+      - run: echo "${{ toJson(secrets) }}"
+      - run: echo "${{ toJson(vars) }}"

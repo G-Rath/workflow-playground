@@ -1,5 +1,7 @@
 name: CI
 on:
+  push:
+    - main
   pull_request:
     types:
       - opened
@@ -58,3 +60,7 @@ jobs:
   run_action:
     uses: ./.github/workflows/trigger.yml
     permissions: {}
+  test_this:
+    uses: ./.github/workflows/reuse.yml
+    inputs:
+      environment: production
