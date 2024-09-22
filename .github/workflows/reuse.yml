@@ -1,0 +1,27 @@
+on:
+  workflow_call:
+    inputs:
+      environment:
+        type: string
+        required: false
+      outer_env:
+        type: string
+        required: false
+      outer_vars:
+        type: string
+        required: false
+      outer_secrets:
+        type: string
+        required: false
+jobs:
+  do_something:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - run: env
+      - run: echo "${{ inputs.outer_env }}"
+      - run: echo "${{ inputs.outer_secrets }}"
+      - run: echo "${{ inputs.outer_vars }}"
+      - run: echo "${{ toJson(env) }}"
+      - run: echo "${{ toJson(secrets) }}"
+      - run: echo "${{ toJson(vars) }}"

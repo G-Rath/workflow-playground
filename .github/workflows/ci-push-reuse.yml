@@ -1,0 +1,35 @@
+name: reuse-test
+on:
+  push:
+
+jobs:
+  outer_without_env:
+    runs-on: ubuntu-latest
+    steps:
+      - run: env
+#      - run: echo "${{ toJson(env) }}"
+#      - run: echo "${{ toJson(secrets) }}"
+#      - run: echo "${{ toJson(vars) }}"
+  outer_with_env:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - run: env
+#      - run: echo "${{ toJson(env) }}"
+#      - run: echo "${{ toJson(secrets) }}"
+#      - run: echo "${{ toJson(vars) }}"
+  reuse_without_env:
+    uses: ./.github/workflows/reuse.yml
+    with:
+#      outer_env: ${{ toJson(env) }}
+#      outer_secrets: ${{ toJson(secrets) }}
+      outer_vars: ${{ toJson(vars) }}
+    secrets: inherit
+  reuse_with_env:
+    uses: ./.github/workflows/reuse.yml
+    with:
+      environment: production
+#      outer_env: ${{ toJson(env) }}
+#      outer_secrets: ${{ toJson(secrets) }}
+      outer_vars: ${{ toJson(vars) }}
+    secrets: inherit
