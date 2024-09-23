@@ -13,11 +13,15 @@ on:
       outer_secrets:
         type: string
         required: false
+      target:
+        type: string
+        default: ${{ vars.MX_V_R_2 }}
 jobs:
   do_something:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     steps:
+      - run: echo "Hello, ${{ inputs.target }}"
       - run: env
       - run: echo "${{ inputs.outer_env }}"
       - run: echo "${{ inputs.outer_secrets }}"
