@@ -29,3 +29,14 @@ jobs:
       - run: echo "${{ toJson(env) }}"
       - run: echo "${{ toJson(secrets) }}"
       - run: echo "${{ toJson(vars) }}"
+  do_something2:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello, ${{ inputs.target }}"
+      - run: env
+      - run: echo "${{ inputs.outer_env }}"
+      - run: echo "${{ inputs.outer_secrets }}"
+      - run: echo "${{ inputs.outer_vars }}"
+      - run: echo "${{ toJson(env) }}"
+      - run: echo "${{ toJson(secrets) }}"
+      - run: echo "${{ toJson(vars) }}"
