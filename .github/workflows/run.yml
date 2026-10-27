@@ -19,9 +19,6 @@ jobs:
   gh-annotations:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    defaults:
-      run:
-        working-directory: gh-annotations-scratch
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -31,6 +28,9 @@ jobs:
           go-version-file: gh-annotations-scratch/go.mod
           cache-dependency-path: gh-annotations-scratch/go.sum
       - run: go build -o gh-annotations .
-      - run: ./gh-annotations -case "$CASE"
+        working-directory: gh-annotations-scratch
+      # run from the repository root, as annotation paths are relative to the
+      # working directory and need to point at files that exist in the repo
+      - run: ./gh-annotations-scratch/gh-annotations -case "$CASE"
         env:
           CASE: ${{ inputs.case || 'all' }}
